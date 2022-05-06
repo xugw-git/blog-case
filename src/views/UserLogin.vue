@@ -81,25 +81,25 @@ export default {
   },
   methods: {
     signup() {
-      if (this.signupName !== "" & this.signupPwd !== "") {
+      if (this.signupName !== "" & this.signupPwd !== "" & this.$store.state.blog_case_users.filter(i => i["signupName"] === this.signupName).length === 0) {
         this.$store.state.blog_case_users.push({
           signupName: this.signupName,
           signupPwd: this.signupPwd,
         });
         localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
-        this.$store.state.isSignin = true
-        localStorage.setItem("login-status", JSON.stringify(this.$store.state.isSignin));
         this.$store.state.current_user = this.signupName
         localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
         this.$router.push({ name: "BlogHome" });
         this.$refs.navbar.refresh();
         alert("注册成功！")
+      } else if (this.$store.state.blog_case_users.filter(i => i["signupName"] === this.signupName).length > 0) {
+        alert("用户名已存在！")
+      } else {
+        alert("账密不能为空！")
       }
     },
     signin() {
       if (this.$store.state.blog_case_users.some((e) => e["signupName"] === this.signinName & e["signupPwd"] === this.signinPwd)) {
-        this.$store.state.isSignin = true
-        localStorage.setItem("login-status", JSON.stringify(this.$store.state.isSignin));
         this.$store.state.current_user = this.signinName
         localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
         this.$router.push({ name: "BlogHome" });

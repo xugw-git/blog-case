@@ -5,8 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isSignin: false,
-    current_user: "",
+    current_user: null,
     blog_case_users: []
   },
   getters: {},
