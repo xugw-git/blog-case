@@ -74,7 +74,7 @@ export default {
         });
         localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
         this.$store.state.current_user = this.signupName
-        localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
+        localStorage.setItem("blog-case-current-user", JSON.stringify(this.$store.state.current_user));
         this.$router.push({ name: "BlogHome" });
         alert("注册成功！")
       } else if (this.$store.state.blog_case_users.filter(i => i["signupName"] === this.signupName).length > 0) {
@@ -86,7 +86,7 @@ export default {
     signin() {
       if (this.$store.state.blog_case_users.some((e) => e["signupName"] === this.signinName & e["signupPwd"] === this.signinPwd)) {
         this.$store.state.current_user = this.signinName
-        localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
+        localStorage.setItem("blog-case-current-user", JSON.stringify(this.$store.state.current_user));
         this.$router.push({ name: "BlogHome" });
         this.$refs.navbar.refresh();
       } else {

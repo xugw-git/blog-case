@@ -10,16 +10,8 @@
         <ul class="dropdown-menu">
           <li>
             <router-link :to="{ name: 'UserCenter', params: { username: $store.state.current_user } }"
-              class="dropdown-item">我的账号
+              class="dropdown-item">账号
             </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'ArticleCreate' }" class="dropdown-item">
-              写博客
-            </router-link>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
           </li>
           <li>
             <button @click="logout" class="dropdown-item">退出</button>
@@ -34,19 +26,19 @@
 <script>
 export default {
   name: "BlogNavbar",
+  inject: ['reload'],
   mounted() {
     if (localStorage.getItem("blog-case-users") === null) {
       localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
     }
     this.$store.state.blog_case_users = JSON.parse(localStorage.getItem("blog-case-users"));
-    this.$store.state.current_user = JSON.parse(localStorage.getItem("current-user"));
+    this.$store.state.current_user = JSON.parse(localStorage.getItem("blog-case-current-user"));
   },
   methods: {
     logout() {
       this.$store.state.current_user = null
-      localStorage.removeItem("current-user");
-      this.$router.go(0);
-      // location.reload()
+      localStorage.removeItem("blog-case-current-user");
+      this.reload()
     },
   },
 };

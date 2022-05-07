@@ -7,12 +7,10 @@
         <div>
           <span class="badge bg-primary m-2">{{ article.category }}</span>
           <span class="small m-2">{{ article.createtime }}</span>
-          <span v-for="tag in article.tag" :key="tag" class="badge rounded-pill bg-success m-2">{{ tag }}</span>
+          <span class="small m-2">{{ article.author }}</span>
         </div>
         <div>
-          <router-link :to="{ name: 'ArticleEdit', params: { id: article.id } }" class="badge bg-warning m-2">编辑
-          </router-link>
-          <span class="small m-2">{{ article.author }}</span>
+          <span v-for="tag in article.tag" :key="tag" class="badge rounded-pill bg-warning m-2">{{ tag }}</span>
         </div>
         <h1 class="m-2">{{ article.title }}</h1>
         <div v-for="(para, index) in article.body" :key=index class="m-2">{{ para }}</div>
@@ -43,6 +41,5 @@ export default {
         this.article = res.data.articleInfo.filter(i => i.id == this.$route.params.id)[0]
       });
   },
-  methods: {},
 };
 </script>

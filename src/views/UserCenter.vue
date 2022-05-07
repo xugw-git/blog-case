@@ -74,13 +74,13 @@ export default {
       this.$store.state.blog_case_users = this.$store.state.blog_case_users.filter(i => i["signupName"] !== this.$store.state.current_user)
       localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
       this.$store.state.current_user = null
-      localStorage.removeItem("current-user");
+      localStorage.removeItem("blog-case-current-user");
       this.$router.push({ name: "BlogHome" });
     },
     changeInfo() {
       if (this.username !== "" & this.password !== "" & this.$store.state.blog_case_users.filter(i => i["signupName"] === this.username).length === 0) {
         this.$store.state.current_user = this.username
-        localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
+        localStorage.setItem("blog-case-current-user", JSON.stringify(this.$store.state.current_user));
         this.$store.state.blog_case_users.push({
           signupName: this.username,
           signupPwd: this.password,

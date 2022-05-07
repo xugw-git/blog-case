@@ -16,7 +16,7 @@
                 class="link-dark stretched-link btn-link-hover">{{ article.title }}
               </router-link>
             </h3>
-            <span v-for="tag in article.tag" :key="tag" class="badge rounded-pill bg-success m-2">{{ tag
+            <span v-for="tag in article.tag" :key="tag" class="badge rounded-pill bg-warning m-2">{{ tag
             }}</span>
           </div>
           <div class="col-lg-4 col-md-12">
@@ -50,3 +50,21 @@ export default {
   },
 };
 </script>
+
+<style>
+a:link {
+  text-decoration: none;
+}
+
+.btn-link-hover {
+  background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-size: 0px 6%;
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  transition-duration: 0.5s;
+}
+
+.btn-link-hover:hover {
+  background-size: 100% 6%;
+}
+</style>

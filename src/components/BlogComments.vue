@@ -2,7 +2,7 @@
   <div class="container col-lg-8 col-md-12 my-3 pb-5">
     <br />
     <div class="m-2 row">
-      <p class="small">共 {{ comments_length }} 条评论</p>
+      <p class="small">共 {{ comments.length }} 条评论</p>
     </div>
     <div class="card m-2" v-for="(comment, index) in comments" :key="index">
       <div class="card-header">
@@ -23,7 +23,7 @@
     <div class="m-2 row">
       <textarea v-model="message" class="form-control" placeholder="留下点评论吧"></textarea>
     </div>
-    <div class="m-2 row">
+    <div class="d-grid col-4 mx-auto">
       <button @click="submit" class="btn btn-primary">提交</button>
     </div>
   </div>
@@ -40,13 +40,8 @@ export default {
       message: ""
     };
   },
-  computed: {
-    comments_length() {
-      return this.comments.filter(i => i.id === this.id).length
-    },
-  },
   mounted() {
-    this.comments = JSON.parse(localStorage.getItem("blog_case_comments")).sort((first, second) => Date.parse(second.createtime) - Date.parse(first.createtime));
+    this.comments = JSON.parse(localStorage.getItem("blog_case_comments")).sort((first, second) => Date.parse(second.createtime) - Date.parse(first.createtime)).filter(i => i.id === this.id);
   },
   methods: {
     submit() {
@@ -56,7 +51,7 @@ export default {
         this.message = "";
         alert("提交成功!");
       } else {
-        alert("登录后留言!");
+        alert("请登录后留言!");
       }
     }
   }

@@ -12,7 +12,7 @@ function getArticleInfo() {
 
             "author": "@cname",    //名字为随机中文名字
 
-            "image": "@image('200x100', '#FF9900')",
+            "image": "@image('200x100', '#00CC99')",
 
             "createtime": '@datetime',
 

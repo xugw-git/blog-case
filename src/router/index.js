@@ -4,8 +4,6 @@ import BlogHome from "@/views/BlogHome.vue";
 import ArticleDetail from "@/views/ArticleDetail.vue";
 import UserLogin from "@/views/UserLogin.vue"
 import UserCenter from "@/views/UserCenter.vue"
-import ArticleCreate from "@/views/ArticleCreate.vue"
-import ArticleEdit from "@/views/ArticleEdit.vue"
 
 Vue.use(VueRouter)
 
@@ -29,16 +27,6 @@ const routes = [
     path: "/user/:username",
     name: "UserCenter",
     component: UserCenter
-  },
-  {
-    path: "/article/create",
-    name: "ArticleCreate",
-    component: ArticleCreate
-  },
-  {
-    path: "/article/edit",
-    name: "ArticleEdit",
-    component: ArticleEdit
   },
 ]
 
