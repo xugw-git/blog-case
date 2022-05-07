@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     current_user: null,
     blog_case_users: [],
-    comment_list: []
   },
   getters: {},
   mutations: {},
