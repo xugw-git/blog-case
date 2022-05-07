@@ -9,7 +9,8 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <router-link :to="{ name: 'UserCenter' }" class="dropdown-item">我的账号
+            <router-link :to="{ name: 'UserCenter', params: { username: $store.state.current_user } }"
+              class="dropdown-item">我的账号
             </router-link>
           </li>
           <li>
@@ -33,6 +34,13 @@
 <script>
 export default {
   name: "BlogNavbar",
+  mounted() {
+    if (localStorage.getItem("blog-case-users") === null) {
+      localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
+    }
+    this.$store.state.blog_case_users = JSON.parse(localStorage.getItem("blog-case-users"));
+    this.$store.state.current_user = JSON.parse(localStorage.getItem("current-user"));
+  },
   methods: {
     logout() {
       this.$store.state.current_user = null

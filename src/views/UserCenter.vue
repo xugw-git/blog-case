@@ -3,7 +3,7 @@
     <blog-navbar></blog-navbar>
     <blog-banner></blog-banner>
     <div class="container col-lg-3 col-md-12 my-3">
-      <h1 class="text-center text-secondary m-2">我的账号</h1>
+      <h2 class="text-center text-secondary m-2">我的账号</h2>
       <form>
         <div class="m-2 row">
           <input v-model="username" class="form-control" placeholder="账号" />

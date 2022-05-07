@@ -3,7 +3,7 @@
     <blog-navbar></blog-navbar>
     <blog-banner></blog-banner>
     <div v-show="!signupPage" class="container col-lg-3 col-md-12 my-3">
-      <h1 class="text-center text-secondary m-2">注册页面</h1>
+      <h2 class="text-center text-secondary m-2">注册页面</h2>
       <form>
         <div class="m-2 row">
           <input v-model="signupName" class="form-control" placeholder="账号" />
@@ -25,7 +25,7 @@
       </form>
     </div>
     <div v-show="signupPage" class="container col-lg-3 col-md-12 my-3">
-      <h1 class="text-center text-secondary m-2">登录页面</h1>
+      <h2 class="text-center text-secondary m-2">登录页面</h2>
       <form>
         <div class="m-2 row">
           <input v-model="signinName" class="form-control" placeholder="账号" />
@@ -64,14 +64,6 @@ export default {
       signinPwd: "",
       signupPage: true
     }
-  },
-  mounted() {
-    if (localStorage.getItem("blog-case-users") === null) {
-      localStorage.setItem("blog-case-users", JSON.stringify([...this.$store.state.blog_case_users]));
-    }
-    this.$store.state.blog_case_users = JSON.parse(localStorage.getItem("blog-case-users"));
-    this.$store.state.current_user = JSON.parse(localStorage.getItem("current-user"));
-    this.$store.state.isSignin = JSON.parse(localStorage.getItem("login-status"));
   },
   methods: {
     signup() {
