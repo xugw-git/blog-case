@@ -3,7 +3,7 @@
     <blog-navbar></blog-navbar>
     <blog-banner></blog-banner>
     <div class="container col-lg-8 col-md-12 my-3 pb-5">
-      <div v-for="article in info" :key="article.id" class="card border m-2">
+      <div v-for="article in article_info" :key="article.id" class="card border m-2">
         <div class="row align-items-center">
           <div class="col-lg-8 col-md-12">
             <div class="badge bg-primary m-2">
@@ -38,19 +38,15 @@ export default {
   components: { BlogNavbar, BlogBanner },
   data() {
     return {
-      info: null,
+      article_info: null,
     };
   },
   mounted() {
-    this.get_articles();
-  },
-  methods: {
-    get_articles() {
-      let url = "/articles/info";
-      axios.get(url).then((res) => {
-        this.info = res.data.articleInfo.sort((first, second) => Date.parse(second.createtime) - Date.parse(first.createtime))
+    axios
+      .get("/articles/info")
+      .then(res => {
+        this.article_info = res.data.articleInfo.sort((first, second) => Date.parse(second.createtime) - Date.parse(first.createtime))
       });
-    },
   },
 };
 </script>

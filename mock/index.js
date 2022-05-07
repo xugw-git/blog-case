@@ -8,7 +8,7 @@ function getArticleInfo() {
 
             "title": '@ctitle(6, 20)',
 
-            "body": '@cparagraph(1, 3)',
+            "body|3": ['@cparagraph(10,20)'],
 
             "author": "@cname",    //名字为随机中文名字
 
@@ -24,4 +24,5 @@ function getArticleInfo() {
     });
     return articles;
 }
+
 Mock.mock('/articles/info', 'get', getArticleInfo)
