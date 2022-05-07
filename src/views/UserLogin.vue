@@ -1,56 +1,50 @@
 <template>
   <div>
-    <blog-navbar ref="navbar"></blog-navbar>
+    <blog-navbar></blog-navbar>
     <blog-banner></blog-banner>
-    <div class="container col-12 my-3">
-      <div class="m-2 row">
-        <div class="col"></div>
-        <div v-show="!signupPage" class="col-lg-4">
-          <h1 class="text-center text-secondary m-2">注册页面</h1>
-          <form>
-            <div class="m-2 row">
-              <input v-model="signupName" class="form-control" placeholder="账号" />
-            </div>
-            <div class="m-2 row">
-              <input v-model="signupPwd" class="form-control" type="password" placeholder="密码" />
-            </div>
-            <div class="m-2 row">
-              <button @click="signup" class="btn btn-primary">
-                注册
-              </button>
-            </div>
-            <div class="m-2 row">
-              <div class="text-center text-secondary m-2">已有账号？点击登录</div>
-              <button @click="changePage" class="btn btn-outline-primary">
-                登录
-              </button>
-            </div>
-          </form>
+    <div v-show="!signupPage" class="container col-lg-3 col-md-12 my-3">
+      <h1 class="text-center text-secondary m-2">注册页面</h1>
+      <form>
+        <div class="m-2 row">
+          <input v-model="signupName" class="form-control" placeholder="账号" />
         </div>
-        <div v-show="signupPage" class="col-lg-4">
-          <h1 class="text-center text-secondary m-2">登录页面</h1>
-          <form>
-            <div class="m-2 row">
-              <input v-model="signinName" class="form-control" placeholder="账号" />
-            </div>
-            <div class="m-2 row">
-              <input v-model="signinPwd" class="form-control" type="password" placeholder="密码" />
-            </div>
-            <div class="m-2 row">
-              <button @click="signin" class="btn btn-primary">
-                登录
-              </button>
-            </div>
-            <div class="m-2 row">
-              <div class="text-center text-secondary m-2">首次使用？点击注册</div>
-              <button @click="changePage" class="btn btn-outline-primary">
-                注册
-              </button>
-            </div>
-          </form>
+        <div class="m-2 row">
+          <input v-model="signupPwd" class="form-control" type="password" placeholder="密码" />
         </div>
-        <div class="col"></div>
-      </div>
+        <div class="m-2 row">
+          <button @click="signup" class="btn btn-primary">
+            注册
+          </button>
+        </div>
+        <div class="m-2 row">
+          <div class="text-center text-secondary m-2">已有账号？点击登录</div>
+          <button @click="changePage" class="btn btn-outline-primary">
+            登录
+          </button>
+        </div>
+      </form>
+    </div>
+    <div v-show="signupPage" class="container col-lg-3 col-md-12 my-3">
+      <h1 class="text-center text-secondary m-2">登录页面</h1>
+      <form>
+        <div class="m-2 row">
+          <input v-model="signinName" class="form-control" placeholder="账号" />
+        </div>
+        <div class="m-2 row">
+          <input v-model="signinPwd" class="form-control" type="password" placeholder="密码" />
+        </div>
+        <div class="m-2 row">
+          <button @click="signin" class="btn btn-primary">
+            登录
+          </button>
+        </div>
+        <div class="m-2 row">
+          <div class="text-center text-secondary m-2">首次使用？点击注册</div>
+          <button @click="changePage" class="btn btn-outline-primary">
+            注册
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -90,7 +84,6 @@ export default {
         this.$store.state.current_user = this.signupName
         localStorage.setItem("current-user", JSON.stringify(this.$store.state.current_user));
         this.$router.push({ name: "BlogHome" });
-        this.$refs.navbar.refresh();
         alert("注册成功！")
       } else if (this.$store.state.blog_case_users.filter(i => i["signupName"] === this.signupName).length > 0) {
         alert("用户名已存在！")
