@@ -31,7 +31,7 @@ export default {
   components: { BlogNavbar, BlogBanner, BlogComments },
   data() {
     return {
-      article: null,
+      article: {},
     };
   },
   mounted() {
